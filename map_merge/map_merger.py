@@ -28,5 +28,8 @@ class MapMerger:
         Merges all dicts in the given iterable using the given merge strategy
         """
         def _reducer(accumulator: Dict, element: Dict) -> Dict:
-
+            for key, value in element.items():
+                accumulator[key] = merge_strategy.merge(accumulator.get(key, merge_strategy.NONE), value)
+            return accumulator
+        
         return reduce(_reducer, dicts, {})
