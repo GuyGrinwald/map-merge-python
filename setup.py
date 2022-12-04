@@ -12,12 +12,12 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-    name='sample',
+    name='mapmerge',
     version='0.1.0',
-    description='Sample package for quickly scaffoling new Python projects',
+    description='A dictionary mergeing library',
     long_description=readme,
     author='Guy Grinwald',
-    url='https://github.com/GuyGrinwald/sample_python_project',
+    url='https://github.com/GuyGrinwald/map-merge-python',
     license=license,
     packages=find_packages(exclude=('tests'))
 )
