@@ -22,5 +22,5 @@ $ pip install nox
 ```
 2. Run `nox` tests
 ```bash
-nox --session unit_test -f noxfile.py
+$ nox --session unit_test -f noxfile.py
 ```

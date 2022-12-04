@@ -35,7 +35,7 @@ class MapMerger:
             for key, value in element.items():
                 if key in accumulator:
                     accumulator[key] = merge_strategy.merge(
-                        accumulator.get(key, merge_strategy.NONE), value
+                        accumulator.get(key), value
                     )
                 else:
                     accumulator[key] = value
