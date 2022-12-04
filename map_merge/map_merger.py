@@ -1,7 +1,8 @@
-from typing import Dict, Iterable
 from functools import reduce
+from typing import Dict, Iterable
 
 from map_merge.merge_strategy import MergeStrategy
+
 
 class MapMerger:
     """
@@ -17,9 +18,11 @@ class MapMerger:
 
         def _reducer(accumulator: Dict, element: Dict) -> Dict:
             for key, value in element.items():
-                accumulator[key] = merge_strategy.merge(accumulator.get(key, merge_strategy.NONE), value)
+                accumulator[key] = merge_strategy.merge(
+                    accumulator.get(key, merge_strategy.NONE), value
+                )
             return accumulator
-        
+
         return reduce(_reducer, [d1, d2], {})
 
     @staticmethod
@@ -27,9 +30,12 @@ class MapMerger:
         """
         Merges all dicts in the given iterable using the given merge strategy
         """
+
         def _reducer(accumulator: Dict, element: Dict) -> Dict:
             for key, value in element.items():
-                accumulator[key] = merge_strategy.merge(accumulator.get(key, merge_strategy.NONE), value)
+                accumulator[key] = merge_strategy.merge(
+                    accumulator.get(key, merge_strategy.NONE), value
+                )
             return accumulator
-        
+
         return reduce(_reducer, dicts, {})
