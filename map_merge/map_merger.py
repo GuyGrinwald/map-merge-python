@@ -1,5 +1,5 @@
 from functools import reduce
-from typing import Dict, Iterable
+from typing import Dict, List
 
 from map_merge.merge_strategy import MergeStrategy
 
@@ -26,16 +26,19 @@ class MapMerger:
         return reduce(_reducer, [d1, d2], {})
 
     @staticmethod
-    def merge(dicts: Iterable[Dict], merge_strategy: MergeStrategy) -> Dict:
+    def merge_list(dicts: List[Dict], merge_strategy: MergeStrategy) -> Dict:
         """
         Merges all dicts in the given iterable using the given merge strategy
         """
 
         def _reducer(accumulator: Dict, element: Dict) -> Dict:
             for key, value in element.items():
-                accumulator[key] = merge_strategy.merge(
-                    accumulator.get(key, merge_strategy.NONE), value
-                )
+                if key in accumulator:
+                    accumulator[key] = merge_strategy.merge(
+                        accumulator.get(key, merge_strategy.NONE), value
+                    )
+                else:
+                    accumulator[key] = value
             return accumulator
 
         return reduce(_reducer, dicts, {})

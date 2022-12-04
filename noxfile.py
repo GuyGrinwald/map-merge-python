@@ -12,4 +12,4 @@ def lint(session):
 @nox.session
 def unit_test(session):
     session.install("-r", "requirements.txt")
-    session.run("pytest")
+    session.run("coverage", "run", "-m", "pytest")
